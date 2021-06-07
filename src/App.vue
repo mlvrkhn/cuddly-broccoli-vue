@@ -1,26 +1,35 @@
 <template>
   <div class="container">
     <Header title="Hash me out"/>
-    <Input /> 
-    <Button name="Submit" @klikaj="handleClick"/>
+    <form @submit.prevent="handleSubmit">
+      <input class="input" v-model="message" placeholder="Word to encrypt"/> 
+      <Button name="Submit" @handle-submit="handleClick"/>
+      <p>{{message}}</p>
+    </form>
   </div>
 </template>
 
 <script>
 import Header from './components/Header.vue'
-import Input from './components/Input.vue'
+// import Input from './components/Input.vue'
 import Button from './components/Button.vue'
 
 export default {
   name: 'App',
   components: {
     Header,
-    Input,
+    // Input,
     Button
   },
+  data() {
+    return {
+      message: '',
+    }
+  }, 
   methods: {
-    handleClick() {
-      console.log('kliknąc');
+    handleSubmit() {
+      // this.message = message;
+      console.log('chillin');
     }
   }
 }
@@ -53,6 +62,12 @@ export default {
 body {
   font-family: 'Poppins', sans-serif;
 }
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .container {
   max-width: 500px;
   margin: 30px auto;
@@ -68,7 +83,7 @@ body {
 }
 .btn {
   display: inline-block;
-  background: #000;
+  background: rgb(26, 89, 182);
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -88,5 +103,22 @@ body {
 .btn-block {
   display: block;
   width: 100%;
+}
+.input {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  margin-bottom: 20px;
+  height: 30px;
+  border: 1px solid steelblue;
+  border-radius: 5px;
+  font-size: large;
+  padding: 1rem;
+}
+.input:focus {
+    outline: none;
+}
+.input::placeholder {
+  text-align: center;
 }
 </style>
